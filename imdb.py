@@ -68,7 +68,7 @@ model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['binary_acc
 # 4. MODEL EĞİTİMİ
 # =============================================================================
 # Erken Durdurma (Early Stopping)
-esc = EarlyStopping(monitor="val_loss", patience=5, restore_best_weights=True)
+esc = EarlyStopping(monitor="val_loss", patience=10, restore_best_weights=True)
 
 print("\nModel eğitimi başlıyor...")
 egitim_gecmisi = model.fit(X_train, Y_train, 
@@ -81,8 +81,8 @@ egitim_gecmisi = model.fit(X_train, Y_train,
 # 5. GÖRSELLEŞTİRME VE DEĞERLENDİRME
 # =============================================================================
 # Kayıp Grafiği
-plt.figure(figsize=(14, 6))
-plt.title('Duygu Analizi - Eğitim ve Doğrulama Kayıp Eğrileri (Adam Opt.)', pad=10, fontsize=16)
+plt.figure(figsize=(8, 5))
+plt.title('Duygu Analizi - Eğitim ve Doğrulama Kayıp Eğrileri (Adam Opt.)', pad=5, fontsize=7)
 plt.xlabel('Epok Sayısı')
 plt.ylabel('Binary Crossentropy Kaybı')
 plt.plot(egitim_gecmisi.epoch, egitim_gecmisi.history['loss'], label='Eğitim Kaybı')
@@ -92,8 +92,8 @@ plt.grid(True)
 plt.show()
 
 # Başarı Grafiği
-plt.figure(figsize=(14, 6))
-plt.title('Eğitim ve Doğrulama Başarı Grafiği', pad=10, fontsize=16)
+plt.figure(figsize=(8, 5))
+plt.title('Eğitim ve Doğrulama Başarı Grafiği', pad=5, fontsize=7)
 plt.xlabel('Epok Sayısı')
 plt.ylabel('Başarı Oranı (Binary Accuracy)')
 plt.plot(egitim_gecmisi.epoch, egitim_gecmisi.history['binary_accuracy'], label='Eğitim Başarısı')
